@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 /**
  * MenuTransitionLink — Branded navigation from the homepage to the menu.
@@ -36,7 +37,7 @@ export function MenuTransitionLink({ href, locale = "es", className, children })
       <Link className={className} href={href} onClick={handleClick} aria-disabled={isTransitioning}>
         {children}
       </Link>
-      {isTransitioning ? (
+      {isTransitioning ? createPortal(
         <div
           className="menu-transition menu-transition--active"
           role="status"
@@ -61,7 +62,8 @@ export function MenuTransitionLink({ href, locale = "es", className, children })
             <p>{locale === "es" ? "Preparando tu mesa" : "Bringing the menu to your table"}</p>
             <small>{locale === "es" ? "El sabor de Colombia" : "The flavor of Colombia"}</small>
           </div>
-        </div>
+        </div>,
+        document.body,
       ) : null}
     </>
   );
