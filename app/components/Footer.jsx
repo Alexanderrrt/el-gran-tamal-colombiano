@@ -8,6 +8,7 @@ import { SITE, localizedPath } from "../content";
 /** Footer — Location, verified operating hours, contact, and legal links. */
 export function Footer() {
   const pathname = usePathname();
+  if (pathname === "/" || pathname === "/en") return null;
   const locale = pathname.startsWith("/en") ? "en" : "es";
   const es = locale === "es";
   return (

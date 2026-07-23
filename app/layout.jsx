@@ -14,7 +14,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     siteName: SITE.name,
-    images: [{ url: "/media/hero-truck.webp", width: 765, height: 432, alt: SITE.name }],
+    images: [{ url: "/media/hero-truck-digital.webp", width: 1672, height: 941, alt: SITE.name }],
   },
 };
 
@@ -23,7 +23,7 @@ const restaurantSchema = {
   "@type": "Restaurant",
   name: SITE.name,
   url: SITE.website,
-  image: `${SITE.website}/media/hero-truck.webp`,
+  image: `${SITE.website}/media/hero-truck-digital.webp`,
   telephone: "+1-559-943-6954",
   servesCuisine: ["Colombian", "Latin American"],
   priceRange: "$10–$30",
@@ -45,7 +45,7 @@ const restaurantSchema = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html lang="es" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body>
         <a className="skip-link" href="#main-content">Saltar al contenido / Skip to content</a>
         <Header />

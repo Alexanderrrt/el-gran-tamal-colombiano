@@ -14,10 +14,15 @@ Source: <https://elgrantamalcolombianoca.com/>
 | Local file | Original role |
 |---|---|
 | `logo.webp` | Official logo |
-| `hero-truck.webp` | Official food-truck banner |
 | `truck.webp` | Tamal food photograph |
 | `salchipapa.webp` | Salchipapa food photograph |
 | `empanadas.webp` | Empanada food photograph |
+
+## Digital recreation
+
+| Local file | Source reference | Created | Use |
+|---|---|---|---|
+| `hero-truck-digital.webp` | Restaurant-controlled food-truck photograph from the official website | July 22, 2026 | High-resolution AI-assisted digital recreation for the homepage hero |
 
 ## Instagram
 
