@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ContactActions } from "./ContactActions";
 import { MenuSections } from "./MenuSections";
-import { HOURS, SITE, localizedPath } from "../content";
+import { SITE, localizedPath } from "../content";
 
 const copy = {
   es: {
@@ -33,50 +33,60 @@ const copy = {
 
 export function HomeView({ locale = "es" }) {
   const t = copy[locale];
+  const es = locale === "es";
+  const benefits = es
+    ? [["◆", "Ingredientes", "frescos"], ["♥", "Recetas", "tradicionales"], ["★", "Sabor que te", "hace volver"]]
+    : [["◆", "Fresh", "ingredients"], ["♥", "Traditional", "recipes"], ["★", "Flavor worth", "coming back for"]];
+  const details = es
+    ? [
+        ["◷", "Horario", "Mar–Vie 9 a.m.–9 p.m.", "Sáb 8–9 · Dom 8–4"],
+        ["●", "Visítanos", "1302 S 1st St", "San Jose, CA 95110"],
+        ["●", "Contáctanos", SITE.phone, "Llamadas y WhatsApp"],
+        ["◎", "Síguenos", "@elgrantamalcolombiano", "Instagram"],
+      ]
+    : [
+        ["◷", "Hours", "Tue–Fri 9 a.m.–9 p.m.", "Sat 8–9 · Sun 8–4"],
+        ["●", "Visit us", "1302 S 1st St", "San Jose, CA 95110"],
+        ["●", "Contact us", SITE.phone, "Calls and WhatsApp"],
+        ["◎", "Follow us", "@elgrantamalcolombiano", "Instagram"],
+      ];
+
   return (
-    <main>
-      <section className="hero">
-        <Image src="/media/hero-truck.webp" alt={locale === "es" ? "Camión de El Gran Tamal Colombiano" : "El Gran Tamal Colombiano food truck"} fill priority sizes="100vw" />
-        <div className="hero-shade" />
-        <div className="hero-content">
-          <p className="eyebrow">{t.kicker}</p>
-          <h1>{t.hero}</h1>
-          <p>{t.heroText}</p>
-          <div className="button-row"><Link className="button" href={localizedPath(locale, "menu")}>{locale === "es" ? "Ver el menú" : "View menu"}</Link><a className="button button--light" href={SITE.maps} target="_blank" rel="noreferrer">{locale === "es" ? "Cómo llegar" : "Directions"}</a></div>
+    <main className="home-landing">
+      <section className="home-hero">
+        <div className="home-hero__copy">
+          <div className="home-hero__copy-inner">
+            <div className="home-hero__kicker">
+              <p>{t.kicker}</p>
+              <span aria-hidden="true"><i />◆<i /></span>
+            </div>
+            <h1>
+              {es ? <>El sabor de<br />nuestra tierra,<br /><em>servido con<br />orgullo.</em></> : <>The flavor of<br />our homeland,<br /><em>served with<br />pride.</em></>}
+            </h1>
+            <p className="home-hero__intro">{t.heroText}</p>
+            <div className="home-hero__actions">
+              <Link className="button home-hero__primary" href={localizedPath(locale, "menu")}><span aria-hidden="true">♨</span>{es ? "Ver el menú" : "View menu"}</Link>
+              <a className="button home-hero__secondary" href={SITE.maps} target="_blank" rel="noreferrer"><span aria-hidden="true">⌖</span>{es ? "Cómo llegar" : "Directions"}</a>
+            </div>
+            <div className="home-hero__benefits" aria-label={es ? "Nuestros valores" : "Our values"}>
+              {benefits.map(([icon, first, second]) => <div key={first}><span aria-hidden="true">{icon}</span><p>{first}<br />{second}</p></div>)}
+            </div>
+          </div>
         </div>
-      </section>
-
-      <section className="section operation-grid">
-        <article className="operation-card operation-card--dark">
-          <span>01</span><h2>{t.restaurant}</h2><p>{t.restaurantText}</p>
-          <Link href={localizedPath(locale, "menu")}>{locale === "es" ? "Explorar el menú →" : "Explore the menu →"}</Link>
-        </article>
-        <article className="operation-card operation-card--gold">
-          <span>02</span><h2>{t.wholesale}</h2><p>{t.wholesaleText}</p>
-          <Link href={localizedPath(locale, "wholesale")}>{locale === "es" ? "Conocer mayoreo →" : "Explore wholesale →"}</Link>
-        </article>
-      </section>
-
-      <section className="section">
-        <div className="section-heading"><p className="eyebrow">{locale === "es" ? "Con todo el sabor" : "Full of flavor"}</p><h2>{t.specialties}</h2></div>
-        <div className="food-grid">
-          {[
-            ["/media/truck.webp", "Tamal Colombiano", locale === "es" ? "El clásico de la casa, envuelto y preparado al estilo tolimense." : "Our house classic, wrapped and prepared Tolimense style."],
-            ["/media/salchipapa.webp", "Salchimonster", locale === "es" ? "Papas, carnes, salchicha, queso, maíz y la salsa de la casa." : "Fries, meats, sausage, cheese, corn, and house sauce."],
-            ["/media/empanadas.webp", "Empanadas", locale === "es" ? "Doraditas, crocantes y recién hechas." : "Golden, crispy, and made fresh."],
-          ].map(([src, title, text]) => <article className="food-card" key={src}><Image src={src} alt={title} width={1020} height={765} sizes="(max-width: 760px) 100vw, 33vw" /><div><h3>{title}</h3><p>{text}</p></div></article>)}
+        <div className="home-hero__visual">
+          <Image className="home-hero__truck" src="/media/hero-truck.webp" alt={es ? "Camión de El Gran Tamal Colombiano" : "El Gran Tamal Colombiano food truck"} fill priority sizes="(max-width: 820px) 100vw, 58vw" />
+          <div className="home-hero__visual-shade" />
+          <div className="home-hero__tamal">
+            <Image src="/media/truck.webp" alt={es ? "Tamal tolimense de El Gran Tamal Colombiano" : "Tolimense tamal from El Gran Tamal Colombiano"} width={765} height={432} priority sizes="(max-width: 820px) 82vw, 44vw" />
+          </div>
         </div>
-      </section>
 
-      <section className="section visit-grid">
-        <div><p className="eyebrow">San Jose, California</p><h2>{t.visit}</h2><p>{t.visitText}</p><address>{SITE.address}</address><a className="text-link" href={SITE.maps} target="_blank" rel="noreferrer">{locale === "es" ? "Abrir en Google Maps →" : "Open in Google Maps →"}</a></div>
-        <div className="hours-card"><h3>{locale === "es" ? "Horario" : "Hours"}</h3>{HOURS.map((day) => <div key={day.en}><span>{day[locale]}</span><strong>{locale === "es" ? day.valueEs : day.valueEn}</strong></div>)}</div>
-      </section>
-
-      <section className="section gallery-section">
-        <div className="section-heading"><p className="eyebrow">@elgrantamalcolombiano</p><h2>{locale === "es" ? "Así se vive el sabor" : "See the flavor"}</h2></div>
-        <div className="gallery-grid">
-          {["san-jose-1", "san-jose-2", "san-jose-visit-1", "san-jose-visit-2", "san-jose-visit-3"].map((name, index) => <Image key={name} className={`gallery-${index + 1}`} src={`/media/${name}.webp`} alt={locale === "es" ? "Comida y ambiente de El Gran Tamal Colombiano" : "Food and atmosphere at El Gran Tamal Colombiano"} width={1024} height={1365} sizes="(max-width: 760px) 50vw, 25vw" />)}
+        <div className="home-hero__details">
+          {details.map(([icon, title, lineOne, lineTwo], index) => {
+            const Wrapper = index === 1 || index === 3 ? "a" : "div";
+            const href = index === 1 ? SITE.maps : index === 3 ? SITE.instagram : undefined;
+            return <Wrapper className="home-detail" key={title} href={href} target={href ? "_blank" : undefined} rel={href ? "noreferrer" : undefined}><span aria-hidden="true">{icon}</span><p><strong>{title}</strong>{lineOne}<small>{lineTwo}</small></p></Wrapper>;
+          })}
         </div>
       </section>
     </main>
