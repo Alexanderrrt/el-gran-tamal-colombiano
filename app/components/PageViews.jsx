@@ -74,7 +74,7 @@ export function HomeView({ locale = "es" }) {
           </div>
         </div>
         <div className="home-hero__visual">
-          <Image className="home-hero__truck" src="/media/hero-truck.webp" alt={es ? "Camión de El Gran Tamal Colombiano" : "El Gran Tamal Colombiano food truck"} fill priority sizes="(max-width: 820px) 100vw, 58vw" />
+          <Image className="home-hero__truck" src="/media/hero-truck-digital.webp" alt={es ? "Recreación digital del camión de El Gran Tamal Colombiano" : "Digital recreation of the El Gran Tamal Colombiano food truck"} fill priority sizes="(max-width: 820px) 100vw, 58vw" />
           <div className="home-hero__visual-shade" />
           <div className="home-hero__tamal">
             <Image src="/media/truck.webp" alt={es ? "Tamal tolimense de El Gran Tamal Colombiano" : "Tolimense tamal from El Gran Tamal Colombiano"} width={765} height={432} priority sizes="(max-width: 820px) 82vw, 44vw" />
