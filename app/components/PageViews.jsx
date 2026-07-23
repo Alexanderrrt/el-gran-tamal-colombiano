@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ContactActions } from "./ContactActions";
+import { MenuTransitionLink } from "./MenuTransitionLink";
 import { MenuSections } from "./MenuSections";
 import { SITE, localizedPath } from "../content";
 
@@ -65,7 +66,7 @@ export function HomeView({ locale = "es" }) {
             </h1>
             <p className="home-hero__intro">{t.heroText}</p>
             <div className="home-hero__actions">
-              <Link className="button home-hero__primary" href={localizedPath(locale, "menu")}><span aria-hidden="true">♨</span>{es ? "Ver el menú" : "View menu"}</Link>
+              <MenuTransitionLink className="button home-hero__primary" href={localizedPath(locale, "menu")} locale={locale}><span aria-hidden="true">♨</span>{es ? "Ver el menú" : "View menu"}</MenuTransitionLink>
               <a className="button home-hero__secondary" href={SITE.maps} target="_blank" rel="noreferrer"><span aria-hidden="true">⌖</span>{es ? "Cómo llegar" : "Directions"}</a>
             </div>
             <div className="home-hero__benefits" aria-label={es ? "Nuestros valores" : "Our values"}>

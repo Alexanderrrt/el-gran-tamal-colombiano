@@ -45,7 +45,7 @@ const restaurantSchema = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html lang="es" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body>
         <a className="skip-link" href="#main-content">Saltar al contenido / Skip to content</a>
         <Header />
